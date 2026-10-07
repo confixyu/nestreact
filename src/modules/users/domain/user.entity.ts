@@ -74,4 +74,8 @@ export class User {
   isTeacher(): boolean {
     return this.props.role === Role.TEACHER;
   }
+  
+  isStudent(): boolean {
+    return this.props.role === Role.STUDENT;
+  }
 }
