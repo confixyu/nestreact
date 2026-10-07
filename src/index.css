@@ -1,0 +1,11 @@
+.app-header { display: flex; gap: 2rem; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid #ddd; }
+.app-header nav { display: flex; gap: 1rem; }
+.app-header a.active { font-weight: bold; text-decoration: underline; }
+.app-content { padding: 2rem; }
+.course-card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+.muted { color: #888; }
+
+.session { margin-left: auto; display: flex; gap: 1rem; align-items: center; }
+.login form { display: flex; flex-direction: column; gap: 1rem; max-width: 320px; }
+.login label { display: flex; flex-direction: column; gap: 0.25rem; }
+.error { color: #c0392b; }
