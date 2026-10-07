@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { ApiError } from '../../../shared/api/http-client';
 import { useAuth } from '../use-auth';
 
@@ -56,6 +56,9 @@ export function LoginPage() {
           {isSubmitting ? 'Ingresando...' : 'Ingresar'}
         </button>
       </form>
+      <p>
+        ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
+      </p>
     </section>
   );
 }
