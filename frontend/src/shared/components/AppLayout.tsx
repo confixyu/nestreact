@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router';
 import { useAuth } from '../../features/auth/use-auth';
+import { Role } from '../../features/auth/types';
 
 export function AppLayout() {
   const { user, logout } = useAuth();
@@ -10,6 +11,7 @@ export function AppLayout() {
         <strong>Aula</strong>
         <nav>
           <NavLink to="/courses">Cursos</NavLink>
+          {user?.role === Role.STUDENT && <NavLink to="/enrollments">Mis cursos</NavLink>}
         </nav>
         <div className="session">
           {user ? (
