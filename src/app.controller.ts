@@ -1,6 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service.js';
+import { Public } from './modules/auth/presentation/decorators/public.decorator.js';
 
+@Public()
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -9,9 +11,9 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
+  
   @Get('/health')
-  getHealth(): Promise<Object> {
+  getHealth(): Promise<{status: string, database: string}> {
     return this.appService.checkHealth();
   }
 }

@@ -9,6 +9,10 @@ import { ConfigService } from '@nestjs/config';
 import { LoginUseCase } from './application/login.use-case.js';
 import { TokenService } from './application/ports/token-service.js';
 import { JwtTokenService } from './infrastructure/jwt-token.service.js';
+import { APP_GUARD } from '@nestjs/core';
+import { GetCurrentUserUseCase } from './application/get-current-user.use-case.js';
+import { JwtAuthGuard } from './presentation/guards/jwt-auth.guard.js';
+import { RolesGuard } from './presentation/guards/roles.guard.js';
 
 
 @Module({
@@ -28,13 +32,22 @@ import { JwtTokenService } from './infrastructure/jwt-token.service.js';
   providers: [
     RegisterUserUseCase,
     LoginUseCase,
+    GetCurrentUserUseCase,
     {
-      provide: PasswordHasher,
-      useClass: ScryptPasswordHasher,
+        provide: PasswordHasher,
+        useClass: ScryptPasswordHasher,
     },
     { 
         provide: TokenService, 
         useClass: JwtTokenService 
+    },
+    { 
+        provide: APP_GUARD, 
+        useClass: JwtAuthGuard 
+    },
+    { 
+        provide: APP_GUARD, 
+        useClass: RolesGuard 
     },
   ],
 })

@@ -7,4 +7,5 @@ export interface AccessTokenPayload {
 
 export abstract class TokenService {
   abstract sign(payload: AccessTokenPayload): Promise<string>;
+  abstract verify(token: string): Promise<AccessTokenPayload>;
 }

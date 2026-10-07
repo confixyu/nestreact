@@ -1,6 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus } from '@nestjs/common';
 import type { Response } from 'express';
-import { ConflictError, DomainError, UnauthorizedError } from '../domain/domain.error.js';
+import { ConflictError, DomainError, ForbiddenError, NotFoundError, UnauthorizedError } from '../domain/domain.error.js';
 
 @Catch(DomainError)
 export class DomainErrorFilter implements ExceptionFilter {
@@ -22,6 +22,14 @@ export class DomainErrorFilter implements ExceptionFilter {
     
     if (error instanceof UnauthorizedError) {
         return HttpStatus.UNAUTHORIZED;
+    }
+
+    if (error instanceof ForbiddenError) {
+        return HttpStatus.FORBIDDEN;
+    }
+
+    if (error instanceof NotFoundError) {
+        return HttpStatus.NOT_FOUND;
     }
     return HttpStatus.BAD_REQUEST;
   }
