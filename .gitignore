@@ -1,0 +1,5 @@
+# OS / editor
+.DS_Store
+
+# Local scratch
+_to_delete/
